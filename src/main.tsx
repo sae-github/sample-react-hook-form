@@ -1,9 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import { MuiForm } from './MuiForm'
 import StandardForm from './StandardForm'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <StandardForm />
+    {/* <StandardForm /> */}
+    <MuiForm/>
   </React.StrictMode>,
 )
