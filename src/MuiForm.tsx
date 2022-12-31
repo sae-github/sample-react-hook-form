@@ -8,6 +8,7 @@ import {
 import { Box } from "@mui/system";
 import styled from "styled-components";
 import { Controller, useForm } from "react-hook-form";
+import { ErrorMessage } from "@hookform/error-message";
 
 export const MuiForm = () => {
   const { handleSubmit, control } = useForm({
@@ -34,9 +35,17 @@ export const MuiForm = () => {
           <Controller
             name="firstName"
             control={control}
-            rules={{ required: true }}
-            render={({ field }) => {
-              return <Input {...field} />;
+            rules={{
+              required: "必須項目です",
+              maxLength: {
+                value: 6,
+                message: "タイトルは6文字以内で入力してください",
+              },
+            }}
+            render={({ field, fieldState }) => {
+              return (
+                <TextField {...field} helperText={fieldState.error?.message} />
+              );
             }}
           />
         </Box>
@@ -44,9 +53,24 @@ export const MuiForm = () => {
           <Controller
             name="textarea"
             control={control}
-            rules={{ required: true }}
-            render={({ field }) => {
-              return <CustomTextareaAutosize {...field} />;
+            rules={{
+              required: "必須項目です",
+              maxLength: {
+                value: 10,
+                message: "テキストは10文字以内で入力してください",
+              },
+            }}
+            render={({ field, formState }) => {
+              return (
+                <>
+                  <CustomTextareaAutosize {...field} />
+                  <ErrorMessage
+                    errors={formState.errors}
+                    name="textarea"
+                    render={({ message }) => <p>{message}</p>}
+                  />
+                </>
+              );
             }}
           />
         </Box>
@@ -65,13 +89,22 @@ export const MuiForm = () => {
           <Controller
             name="email"
             control={emailControl}
-            render={({ field }) => {
+            rules={{
+              required: "必須項目です",
+              pattern: {
+                value:
+                  /^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]+.[A-Za-z0-9]+$/,
+                message: "メールアドレス形式で入力してください",
+              },
+            }}
+            render={({ field, fieldState }) => {
               return (
                 <TextField
                   id="email"
                   label="メールアドレス"
                   variant="outlined"
                   {...field}
+                  helperText={fieldState.error?.message}
                 />
               );
             }}
