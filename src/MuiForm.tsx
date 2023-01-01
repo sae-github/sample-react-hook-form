@@ -11,7 +11,11 @@ import { Controller, useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 
 export const MuiForm = () => {
-  const { handleSubmit, control } = useForm({
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm({
     defaultValues: {
       firstName: "",
       textarea: "",
@@ -42,11 +46,14 @@ export const MuiForm = () => {
                 message: "タイトルは6文字以内で入力してください",
               },
             }}
-            render={({ field, fieldState }) => {
-              return (
-                <TextField {...field} helperText={fieldState.error?.message} />
-              );
+            render={({ field }) => {
+              return <TextField {...field} />;
             }}
+          />
+          <ErrorMessage
+            errors={errors}
+            name="firstName"
+            render={({ message }) => <p>{message}</p>}
           />
         </Box>
         <Box mt={2}>
@@ -109,7 +116,9 @@ export const MuiForm = () => {
               );
             }}
           />
-          <Button type="submit">テスト配信する</Button>
+          <Button type="submit" variant="outlined">
+            テスト配信する
+          </Button>
         </EmailWrapper>
       </Stack>
     </CustomBox>
