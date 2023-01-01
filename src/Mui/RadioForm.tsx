@@ -1,9 +1,7 @@
-import { ErrorMessage } from "@hookform/error-message";
 import {
   Button,
   FormControl,
   FormControlLabel,
-  FormHelperText,
   Radio,
   RadioGroup,
   Stack,
@@ -19,19 +17,19 @@ const data = {
         question: "毎日よく眠れているか",
         options: [
           {
-            questionMappingOptionId: 1,
+            id: 1,
             description: "とても当てはまる",
           },
           {
-            questionMappingOptionId: 2,
+            id: 2,
             description: "当てはまる",
           },
           {
-            questionMappingOptionId: 3,
+            id: 3,
             description: "当てはまらない",
           },
           {
-            questionMappingOptionId: 4,
+            id: 4,
             description: "どちらとも言えない",
           },
         ],
@@ -40,19 +38,19 @@ const data = {
         question: "毎日よくご飯を食べているか",
         options: [
           {
-            questionMappingOptionId: 1,
+            id: 1,
             description: "とても当てはまる",
           },
           {
-            questionMappingOptionId: 2,
+            id: 2,
             description: "当てはまる",
           },
           {
-            questionMappingOptionId: 3,
+            id: 3,
             description: "当てはまらない",
           },
           {
-            questionMappingOptionId: 4,
+            id: 4,
             description: "どちらとも言えない",
           },
         ],
@@ -61,19 +59,19 @@ const data = {
         question: "毎日楽しいと思うか",
         options: [
           {
-            questionMappingOptionId: 1,
+            id: 1,
             description: "とても当てはまる",
           },
           {
-            questionMappingOptionId: 2,
+            id: 2,
             description: "当てはまる",
           },
           {
-            questionMappingOptionId: 3,
+            id: 3,
             description: "当てはまらない",
           },
           {
-            questionMappingOptionId: 4,
+            id: 4,
             description: "どちらとも言えない",
           },
         ],
@@ -83,7 +81,7 @@ const data = {
 };
 
 export const RadioForm = () => {
-  const { register, handleSubmit, control } = useForm();
+  const { handleSubmit, control } = useForm();
 
   return (
     <CustomContainer>
@@ -112,18 +110,15 @@ export const RadioForm = () => {
                       return (
                         <>
                           <RadioGroup
-                            aria-labelledby="answer-radio-buttons-group-label"
+                            aria-labelledby="answer-radio-buttons-group"
                             row
                           >
                             {question.options.map((option) => {
                               return (
                                 <FormControlLabel
                                   {...field}
-                                  key={
-                                    question.question +
-                                    option.questionMappingOptionId
-                                  }
-                                  value={option.questionMappingOptionId}
+                                  key={question.question + option.id}
+                                  value={option.id}
                                   control={<Radio />}
                                   label={option.description}
                                 />
