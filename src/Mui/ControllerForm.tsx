@@ -10,7 +10,7 @@ import styled from "styled-components";
 import { Controller, useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 
-export const MuiForm = () => {
+export const ControllerForm = () => {
   const {
     handleSubmit,
     control,
