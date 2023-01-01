@@ -1,11 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { ControllerForm } from "./Mui/ControllerForm";
+import { FormProviderForm } from "./Mui/FormProviderForm";
 import StandardForm from "./StandardForm";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     {/* <StandardForm /> */}
-    <ControllerForm />
+    {/* <ControllerForm /> */}
+    <FormProviderForm />
   </React.StrictMode>
 );
